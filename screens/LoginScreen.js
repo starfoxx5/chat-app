@@ -9,7 +9,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <StatusBar style="light" />
       <Image
         source={{
