@@ -8,6 +8,8 @@ import {
 
 import { Input, Button, Text } from "react-native-elements";
 
+import { auth } from "../firebase";
+
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +23,15 @@ const RegisterScreen = ({ navigation }) => {
   }, [navigation]);
 
   function register() {
-    //
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        authUser.user.updateProfile({
+          displayName: name,
+          photoURL: imageUrl,
+        });
+      })
+      .catch((error) => alert(error.message));
   }
 
   return (
